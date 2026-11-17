@@ -1,0 +1,21 @@
+--- a/source/sleep.cpp
++++ b/source/sleep.cpp
+@@ -3,5 +3,8 @@
+ 
+ #include <functional> // std::modulus
++#if defined(__AMIGAOS3__)
++#include <unistd.h>
++#endif
+ 
+ 
+ namespace somn {
+@@ -23,5 +26,9 @@
+         timespec pause;
+         pause.tv_sec = nanoseconds / 1000000000;
+         pause.tv_nsec = remainder;
++#if defined(__AMIGAOS3__)
++        usleep((nanoseconds + 999UL) / 1000UL);
++#else
+         nanosleep( &pause, NULL );
++#endif
+ }

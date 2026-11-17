@@ -1,0 +1,6 @@
+HOH_GIT=https://github.com/dougmencken/HeadOverHeels
+HOH_COMMIT=caa066d63d3105367e41cf897f411a1cb364ca64
+HOH_VERSION=1.4dev
+TINYXML2_SHA256=5556deb5081fb246ee92afae73efd943c889cef0cafea92b0b82422d6a18f289
+ALLEGRO_GIT=https://github.com/DalsinAI/amigaallegro
+ALLEGRO_COMMIT=823f17f78511c2ae85b93fd7060cc9fffc47d4af
