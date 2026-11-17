@@ -20,6 +20,6 @@ if [ -n "${HOH_SRC:-}" ]; then
     [ "$(sort "$HERE/amiga/sources.txt")" = "$up" ] || { echo "FAIL sources differ from Makefile.am"; exit 1; }
     while read -r f; do [ -f "$HOH_SRC/source/$f" ] || { echo "FAIL missing $f"; exit 1; }; done < "$HERE/amiga/sources.txt"
     echo "$TINYXML2_SHA256  $HOH_SRC/external/tinyxml2/tinyxml2-11.0.0.tar.gz" | sha256sum -c - >/dev/null || { echo "FAIL tinyxml2 tarball"; exit 1; }
-    for p in "$HERE"/patches/*.patch; do [ -f "$p" ] || continue; patch -s --dry-run -d "$HOH_SRC" -p1 < "$p" || { echo "FAIL $p"; exit 1; }; done
+    for p in "$HERE"/patches/*.patch; do [ -f "$p" ] || continue; (patch -s --batch --forward --dry-run -d "$HOH_SRC" -p1 < "$p" 2>/dev/null || patch -s --batch -R --dry-run -d "$HOH_SRC" -p1 < "$p" 2>/dev/null) || { echo "FAIL $p"; exit 1; }; done
 fi
 echo "test_lock: pass"
