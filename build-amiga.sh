@@ -61,7 +61,7 @@ INC="-I$SRC/source -I$SRC/source/activities -I$SRC/source/behaviors -I$SRC/sourc
  -I$TX -I$PFX/include -I$VP/include -I$SYSROOT/include"
 CXXF="$ARCH -std=gnu++17 -O2 -fomit-frame-pointer $DEFS $INC"
 CF="$ARCH -std=gnu17 -O2 -fomit-frame-pointer $DEFS $INC"
-O="$WORK/obj"; mkdir -p "$O"
+O="$WORK/obj"; mkdir -p "$O"; export CF CXXF
 { sed "s|^|$SRC/source/|" "$HERE/amiga/sources.txt"; echo "$TX/tinyxml2.cpp"; echo "$HERE/amiga/amiga_start.c"; } > "$WORK/files.txt"
 set +e
 timeout "$(left)" sh -c '
