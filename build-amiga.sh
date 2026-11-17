@@ -59,7 +59,7 @@ DEFS="-DUSE_ALLEGRO5=1 -DALLEGRO_STATICLINK=1 -D__AMIGAOS3__=1 -DPACKAGE_VERSION
  -DBinDirFromConfigure=\"PROGDIR:\" -DDataDirFromConfigure=\"PROGDIR:Data\""
 INC="-I$SRC/source -I$SRC/source/activities -I$SRC/source/behaviors -I$SRC/source/gui -I$SRC/source/guiactions \
  -I$TX -I$PFX/include -I$VP/include -I$SYSROOT/include"
-CXXF="$ARCH -std=gnu++17 -O2 -fomit-frame-pointer $DEFS $INC"
+CXXF="$ARCH -std=gnu++17 -O2 -fomit-frame-pointer -include $HERE/amiga/compat-pthread-cxx.h $DEFS $INC"
 CF="$ARCH -std=gnu17 -O2 -fomit-frame-pointer $DEFS $INC"
 O="$WORK/obj"; mkdir -p "$O"; export CF CXXF
 { sed "s|^|$SRC/source/|" "$HERE/amiga/sources.txt"; echo "$TX/tinyxml2.cpp"; echo "$HERE/amiga/amiga_start.c"; } > "$WORK/files.txt"
